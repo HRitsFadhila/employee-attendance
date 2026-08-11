@@ -1,3 +1,13 @@
+<script setup>
+    import {ref} from 'vue';
+    import { router } from '@inertiajs/vue3'
+    const showProfileMenu = ref(false)
+
+    const logout = () => {
+        router.post(route('logout'))
+    }
+</script>
+
 <template>
     <div class="flex items-center justify-between h-16 bg-stone-300 border-b border-gray-200">
         <div class="flex items-center px-4">
@@ -10,7 +20,9 @@
             </button>
         </div>
         <div class="flex items-center pr-2">
-            <button class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-gray-50 transition-all duration-200 focus:outline-none">
+            <button
+                @click="showProfileMenu = !showProfileMenu"
+                class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-gray-50 transition-all duration-200 focus:outline-none">
                 <!-- Avatar -->
                 <div class="relative">
                     <img
@@ -23,7 +35,6 @@
                     <h1 class="text-sm font-semibold text-gray-800 leading-5">
                         Muhammad Harits Fadhila
                     </h1>
-
                     <p class="text-xs text-gray-500 mt-0.5">
                         Administrator
                     </p>
@@ -43,7 +54,10 @@
                     />
                 </svg>
             </button>
-        </div>
 
+            <div v-if="showProfileMenu" class="absolute right-6 top-14 w-56 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50" >
+                <button @click="logout" class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition" > <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" > <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15 M12 15l3-3m0 0-3-3m3 3H3" /> </svg> Logout </button>
+            </div>
+        </div>
     </div>
 </template>
