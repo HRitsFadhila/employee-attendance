@@ -9,7 +9,7 @@ import Sidebar from '../Components/Sidebar.vue';
         <div class="flex flex-col flex-1 overflow-y-auto">
         <Navbar />
 
-        <div class="p-16">
+        <div class="p-8">
             <slot />
         </div>
     </div>
