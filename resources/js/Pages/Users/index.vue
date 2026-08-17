@@ -21,7 +21,7 @@ defineProps({
         </div>
         <div class="bg-white rounded-2xl">
             <div class="flex justify-end p-4">
-                <Link href="/users/create" class="bg-blue-600 text-white px-4 py-2 rounded-lg">
+                <Link href="/users/create" class="bg-orange-600 text-white px-4 py-2 rounded-lg">
                     Tambah User
                 </Link>
             </div>

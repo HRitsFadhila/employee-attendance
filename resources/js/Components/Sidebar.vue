@@ -8,14 +8,20 @@
     <div class="flex-col w-64 bg-green-800 transition-all duration-300 ease-in-out peer-checked:-ml-64">
         <div class="flex flex-col flex-1 overflow-y-auto">
             <nav
-                class="flex flex-col flex-1 overflow-y-auto bg-gradient-to-b from-emerald-900 to-green-800 px-2 py-4 gap-10">
-                <div class="flex">
-                    <div>
-                        <h1>Gambar</h1>
-                    </div>
-                    <div>
-                        <h2>Absensi Pegawai</h2>
-                        <p>Politeknik Elektronika Negeri Surabaya</p>
+                class="flex flex-col flex-1 overflow-y-auto bg-gradient-to-b from-emerald-900 to-green-800 px-2 py-4 gap-5">
+                <div class="h-20 flex items-center px-6 border-b border-green-800">
+                    <img
+                        :src="'/img/Logo.png'"
+                        alt="logo"
+                        class="h-9 w-auto object-contain"
+                    />
+                    <div class="ml-3">
+                        <h1 class="text-white font-bold text-lg">
+                            Absensi Pegawai
+                        </h1>
+                        <p class="text-xs text-slate-400">
+                            Politeknik Elektronika Negeri Surabaya
+                        </p>
                     </div>
                 </div>
                 <div class="flex flex-col flex-1 gap-3">
