@@ -36,4 +36,35 @@ class UserController extends Controller
 
         return redirect()->route('users.index')->with('success', 'add user successfully');
     }
+
+    public function edit(User $user)
+    {
+        return Inertia::render('Users/edit', [
+            'user' => $user,
+        ]);
+    }
+
+    public function update(Request $request, User $user)
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'unique:users,email,' . $user->id],
+            'password' => ['nullable', 'min:8', 'confirmed']
+        ]);
+        $data = [
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+        ];
+        if($request->filled('password')){
+            $data['password'] = Hash::make($validated['password']);
+        };
+        $user->update($data);
+        return redirect()->route('users.index')->with('success', 'user updated successfully');
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return redirect()->route('users.index')->with('success', 'user has been successfully deleted');
+    }
 }

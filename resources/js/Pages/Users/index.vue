@@ -42,7 +42,9 @@ defineProps({
                             <td class="px-6 py-4">{{ user.email }}</td>
                             <td class="px-6 py-4">
                                 <div class="flex justify-center gap-2">
-                                    <Link class="p-2 rounded-lg bg-yellow-100 text-yellow-600 hover:bg-yellow-200">
+                                    <Link
+                                        :href="route('users.edit', user.id)"
+                                        class="p-2 rounded-lg bg-yellow-100 text-yellow-600 hover:bg-yellow-200">
                                         <PencilIcon class="w-4 h-4"/>
                                     </Link>
                                     <Button class="p-2 rounded-lg bg-red-100 text-red-600 hover:bg-red-200">
