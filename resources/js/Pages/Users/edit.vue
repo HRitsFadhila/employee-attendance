@@ -10,6 +10,7 @@ const form = useForm({
     name : props.user.name,
     email : props.user.email,
     password : "",
+    password_confirmation: "",
 });
 
 const submit = () => {

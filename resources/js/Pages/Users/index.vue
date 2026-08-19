@@ -1,11 +1,35 @@
 <script setup>
 import { PencilIcon, TrashIcon } from '@heroicons/vue/24/outline';
 import DashboardLayout from '../../Layouts/DashboardLayout.vue';
-import { Link } from '@inertiajs/vue3';
+import { Link, router } from '@inertiajs/vue3';
+import { ref } from 'vue';
+import ConfirmModal from '../../Components/ConfirmModal.vue';
 
 defineProps({
     users: Array,
 });
+
+const showDeleteModal = ref(false);
+const selectedUser = ref(null);
+
+const confirmDelete = (user) => {
+    selectedUser.value = user;
+    showDeleteModal.value = true;
+};
+
+const closeModal = () => {
+    showDeleteModal.value = false;
+    selectedUser.value = null;
+};
+
+const deleteUser = () => {
+    router.delete(route("users.destroy", selectedUser.value.id), {
+        preserveScroll: true,
+        onSuccess: () => {
+            closeModal();
+        },
+    });
+};
 
 </script>
 
@@ -47,16 +71,23 @@ defineProps({
                                         class="p-2 rounded-lg bg-yellow-100 text-yellow-600 hover:bg-yellow-200">
                                         <PencilIcon class="w-4 h-4"/>
                                     </Link>
-                                    <Button class="p-2 rounded-lg bg-red-100 text-red-600 hover:bg-red-200">
+                                    <button
+                                        @click="confirmDelete(user)"
+                                        class="p-2 rounded-lg bg-red-100 text-red-600 hover:bg-red-200">
                                         <TrashIcon class="w-4 h-4"/>
-                                    </Button>
+                                    </button>
                                 </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-
             </div>
         </div>
     </DashboardLayout>
+    <ConfirmModal
+        :show="showDeleteModal"
+        :message="`Are you sure want deleted ${selectedUser?.name}?`"
+        @close="closeModal"
+        @confirm="deleteUser"
+    />
 </template>
